@@ -45,9 +45,9 @@
                 iframeElement.remove();
             });
  
-  const holderClone = document.getElementById('holder').cloneNode(true);
-  //document.getElementById('holder').innerHTML = `<pre>${article.textContent}</pre>`;
-  document.getElementById('holder').innerHTML = `${tempDiv.innerHTML.replace(/\n\s*\n/g, '\n')}`;
+  const holderClone = document.getElementById('holder').cloneNode(true); 
+  //document.getElementById('holder').innerHTML = `${tempDiv.innerHTML.replace(/\n\s*\n/g, '\n')}`;
+  document.write(`${tempDiv.innerHTML.replace(/\n\s*\n/g, '\n')}`);
     
 	 }
 	 
