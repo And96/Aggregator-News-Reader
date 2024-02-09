@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readability</title>
+</head>
+<body>
+  <textarea id="textareaID" name="textareaID" rows="4" cols="50"><p>ciaoooo</p></textarea>
+
+    <div class="btns">
+        <button id="toText" onclick="fetchAndParse()">To text</button>
+    
+    </div>
+    <div id="holder">
+        
+    </div>
+
+<script src="https://cdn.jsdelivr.net/gh/mozilla/readability/Readability.js" type="application/javascript"></script>
+<script>
+    /*const documentClone = document.cloneNode(true); 
+    const article = new Readability(documentClone).parse();
+    const holderClone = document.getElementById('holder').cloneNode(true);
+    document.getElementById('toText').addEventListener('click', () => document.getElementById('holder').innerHTML = `<pre>${article.textContent}</pre>`);
+    document.getElementById('toHTML').addEventListe/ner('click', () => document.getElementById('holder').innerHTML = holderClone.innerHTML);*/
+	 
+	 function fetchAndParse() {
+	  let htmlcode = document.getElementById("textareaID").value
+               const documentClone = new DOMParser().parseFromString(htmlcode, 'text/html');
+
+ const article = new Readability(documentClone, {
+                charThreshold: 300,
+                disableInlineStyles: true
+            }).parse();
+			
+			  // Remove video elements
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = article.content;
+            const videoElements = tempDiv.querySelectorAll('video');
+            videoElements.forEach((videoElement) => {
+                videoElement.remove();
+            });
+			const iframeElements = tempDiv.querySelectorAll('iframe');
+            iframeElements.forEach((iframeElement) => {
+                iframeElement.remove();
+            });
+ 
+  const holderClone = document.getElementById('holder').cloneNode(true);
+  //document.getElementById('holder').innerHTML = `<pre>${article.textContent}</pre>`;
+  document.getElementById('holder').innerHTML = `${tempDiv.innerHTML.replace(/\n\s*\n/g, '\n')}`;
+    
+	 }
+	 
+	
+
+	
+</script>
+</body>
+</html>
