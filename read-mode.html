@@ -26,9 +26,9 @@
     document.getElementById('toHTML').addEventListe/ner('click', () => document.getElementById('holder').innerHTML = holderClone.innerHTML);*/
 	 
 	 function fetchAndParse() {
-	  let htmlcode = document.getElementById("textareaID").value
+	  let htmlCode = document.getElementById("textareaID").value
 		 htmlCode = DOMPurify.sanitize(htmlCode);
-               const documentClone = new DOMParser().parseFromString(htmlcode, 'text/html');
+               const documentClone = new DOMParser().parseFromString(htmlCode, 'text/html');
 
  const article = new Readability(documentClone, {
                 charThreshold: 300,
